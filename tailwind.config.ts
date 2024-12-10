@@ -14,6 +14,10 @@ export default {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
+        primary: {
+          foreground: "#FFFFFF",
+          DEFAULT: "#111111",
+        },
       },
       fontFamily: {
         satoshi: ["var(--font-satoshi)", ...defaultTheme.fontFamily.sans],
