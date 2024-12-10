@@ -6,7 +6,7 @@ export const Hero = () => {
   return (
     <div className="bg-[#F2F0F1] relative">
       <div className="max-w-5xl lg:pt-6 h-full px-4 lg:px-2 mx-auto flex flex-col lg:flex-row justify-between items-center ">
-        <div className="flex justify-center flex-col gap-y-10 py-10 lg:py-0">
+        <div className="flex justify-center flex-col gap-y-10 py-10 lg:py-0 md:mt-2">
           <h1 className="font-integral text-4xl md:text-5xl lg:text-6xl">
             FIND CLOTHES THAT MATCHES YOUR STYLE
           </h1>
@@ -47,20 +47,20 @@ export const Hero = () => {
           width={500}
           height={500}
           alt="Hero"
-          className="z-10 -mr-6"
+          className="z-10 -mr-6 md:mt-2"
         />
       </div>
 
       <img
         src="/Vector.svg"
         alt="star"
-        className="absolute top-6 right-48 z-2 hidden lg:flex"
+        className="absolute top-6 right-48 z-2 hidden lg:flex animate-spin-slow"
       />
 
       <img
         src="/Vector2.svg"
         alt="star2"
-        className="absolute top-52 left-[730px] z-2 hidden lg:flex"
+        className="absolute top-52 left-[730px] z-2 hidden lg:flex animate-spin-slow"
       />
     </div>
   );

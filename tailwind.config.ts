@@ -27,6 +27,9 @@ export default {
         ],
         integral: ["var(--font-integral)", ...defaultTheme.fontFamily.sans],
       },
+      animation: {
+        "spin-slow": "spin 5s linear infinite",
+      },
     },
   },
   plugins: [nextui()],
