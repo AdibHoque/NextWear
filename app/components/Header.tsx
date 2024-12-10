@@ -39,6 +39,7 @@ export default function Header() {
       }}
       onMenuOpenChange={setIsMenuOpen}
       isBordered
+      shouldHideOnScroll
     >
       <NavbarContent>
         <NavbarMenuToggle

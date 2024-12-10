@@ -1,7 +1,6 @@
 import type {Metadata} from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-import {Providers} from "./UIProviders";
 
 const satoshi = localFont({
   src: "./fonts/Satoshi-Regular.woff",
@@ -34,7 +33,7 @@ export default function RootLayout({
       <body
         className={`${satoshi.variable} ${satoshiBold.variable} ${integral.variable} font-satoshi antialiased`}
       >
-        <Providers>{children}</Providers>
+        {children}
       </body>
     </html>
   );
