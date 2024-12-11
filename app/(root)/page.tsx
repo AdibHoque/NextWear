@@ -1,6 +1,7 @@
 import BrandsSlider from "../components/BrandsSlider";
 import {Hero} from "../components/Hero";
 import {NewArrivals} from "../components/NewArrivals";
+import {TopSelling} from "../components/TopSelling";
 
 export default function Home() {
   return (
@@ -8,6 +9,7 @@ export default function Home() {
       <Hero />
       <BrandsSlider />
       <NewArrivals />
+      <TopSelling />
     </div>
   );
 }
