@@ -111,7 +111,7 @@ export default function Header() {
         {menuItems.map((item, index) => (
           <NavbarMenuItem key={`${item}-${index}`}>
             <Link
-              className="w-full uppercase font-satoshiBold text-4xl my-4"
+              className="w-full uppercase font-integral text-4xl my-4"
               href="#"
               size="lg"
             >

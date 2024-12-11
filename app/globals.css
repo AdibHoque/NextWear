@@ -19,3 +19,12 @@ body {
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+@layer utilities {
+  .wrapper {
+    @apply max-w-5xl mx-auto;
+  }
+  .section-title {
+    @apply font-integral text-center font-bold uppercase text-3xl md:text-4xl lg:text-5xl my-14 md:my-16 lg:my-20;
+  }
+}

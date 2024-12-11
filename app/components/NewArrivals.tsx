@@ -4,10 +4,8 @@ import {Divider} from "@nextui-org/react";
 
 export const NewArrivals = () => {
   return (
-    <div className=" max-w-5xl mx-auto ">
-      <h1 className="font-integral text-center font-bold uppercase text-5xl my-14 md:my-16 lg:my-20">
-        New Arrivals
-      </h1>
+    <div className="wrapper">
+      <h1 className="section-title">New Arrivals</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 px-10 lg:px-0">
         {Array(4)
           .fill(0)
