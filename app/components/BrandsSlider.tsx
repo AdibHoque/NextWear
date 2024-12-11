@@ -3,7 +3,7 @@ import Image from "next/image";
 
 function BrandsSlider() {
   return (
-    <Marquee className="bg-black w-full -top-1 z-20">
+    <Marquee className="bg-black w-full -top-[1px] z-20">
       <div className="my-5 mx-10">
         <Image src="/brand1.svg" alt="brand" width={166} height={33} />
       </div>
