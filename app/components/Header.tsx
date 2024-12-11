@@ -47,7 +47,9 @@ export default function Header() {
           className="sm:hidden"
         />
         <NavbarBrand>
-          <p className="font-bold text-inherit font-integral">NextWear</p>
+          <p className="font-bold text-inherit font-integral lg:text-2xl">
+            NextWear
+          </p>
         </NavbarBrand>
       </NavbarContent>
 

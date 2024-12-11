@@ -15,7 +15,11 @@ export const Hero = () => {
             designed to bring out your individuality and cater to your sense of
             style.
           </p>
-          <Button color="primary" variant="solid" className="rounded-full w-44">
+          <Button
+            color="primary"
+            variant="solid"
+            className="rounded-full w-full lg:w-44 font-satoshi font-medium"
+          >
             Shop Now
           </Button>
           <div className="flex flex-wrap w-full justify-center lg:justify-around gap-2 ">
@@ -51,13 +55,17 @@ export const Hero = () => {
         />
       </div>
 
-      <img
+      <Image
+        width={104}
+        height={104}
         src="/Vector.svg"
         alt="star"
         className="absolute top-6 right-48 z-2 hidden lg:flex animate-spin-slow"
       />
 
-      <img
+      <Image
+        width={56}
+        height={56}
         src="/Vector2.svg"
         alt="star2"
         className="absolute top-52 left-[730px] z-2 hidden lg:flex animate-spin-slow"
