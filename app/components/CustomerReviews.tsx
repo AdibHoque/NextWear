@@ -6,7 +6,7 @@ import Image from "next/image";
 
 const Review = () => {
   return (
-    <div className=" border mx-auto rounded-xl p-8 flex flex-col justify-between gap-2 ">
+    <div className=" border mx-2 rounded-xl p-8 flex flex-col justify-between gap-2 ">
       <div className="flex">
         {Array(5)
           .fill(0)
@@ -57,7 +57,7 @@ const CustomerReviews = () => {
             spaceBetween: 40,
           },
           768: {
-            slidesPerView: 3,
+            slidesPerView: 2,
             spaceBetween: 20,
           },
           1024: {

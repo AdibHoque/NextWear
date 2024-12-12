@@ -3,6 +3,7 @@ import BrandsSlider from "../components/BrandsSlider";
 import CustomerReviews from "../components/CustomerReviews";
 import {Hero} from "../components/Hero";
 import {NewArrivals} from "../components/NewArrivals";
+import Newsletter from "../components/Newsletter";
 import {TopSelling} from "../components/TopSelling";
 
 export default function Home() {
@@ -14,6 +15,7 @@ export default function Home() {
       <TopSelling />
       <BentoSection />
       <CustomerReviews />
+      <Newsletter />
     </>
   );
 }
