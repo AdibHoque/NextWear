@@ -18,7 +18,8 @@
     "next": "15.0.4",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "react-fast-marquee": "^1.6.5"
+    "react-fast-marquee": "^1.6.5",
+    "swiper": "^11.1.15"
   },
   "devDependencies": {
     "@types/node": "^20",
