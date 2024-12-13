@@ -4,7 +4,7 @@ import React from "react";
 
 export const Hero = () => {
   return (
-    <div className="bg-[#F2F0F1] relative">
+    <div className="bg-[#F2F0F1] relative overflow-hidden">
       <div className="max-w-5xl lg:pt-6 h-full px-4 lg:px-2 mx-auto flex flex-col lg:flex-row justify-between items-center ">
         <div className="flex justify-center flex-col gap-y-10 py-10 lg:py-0 md:mt-2">
           <h1 className="font-integral text-4xl md:text-5xl lg:text-6xl">

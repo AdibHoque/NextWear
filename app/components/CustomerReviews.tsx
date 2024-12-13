@@ -49,8 +49,6 @@ const CustomerReviews = () => {
           disableOnInteraction: false,
         }}
         modules={[Autoplay]}
-        onSlideChange={() => console.log("slide change")}
-        onSwiper={(swiper) => console.log(swiper)}
         breakpoints={{
           640: {
             slidesPerView: 1,

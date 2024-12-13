@@ -6,33 +6,33 @@ export const BentoSection = () => {
         <div className="grid grid-cols-1 md:grid-cols-5 gap-5">
           <div
             style={{backgroundImage: "url(/casual.png)"}}
-            className="md:col-span-2 w-full h-[190px] bg-no-repeat bg-cover bg-right-top rounded-xl bg-white"
+            className="md:col-span-2 w-full h-[190px] hover:bg-cover bg-no-repeat bg-contain bg-right-top rounded-xl bg-white"
           >
-            <h2 className="font-satoshiBold text-2xl md:text-3xl lg:text-4xl mt-6 ml-6">
+            <h2 className="font-satoshiBold text-3xl lg:text-4xl mt-6 ml-6">
               Casual
             </h2>
           </div>
           <div
             style={{backgroundImage: "url(/formal.png)"}}
-            className="md:col-span-3 w-full h-[190px] bg-no-repeat bg-cover bg-right-top rounded-xl bg-white"
+            className="md:col-span-3 hover:bg-cover w-full h-[190px] bg-no-repeat bg-contain bg-right-top rounded-xl bg-white"
           >
-            <h2 className="font-satoshiBold text-2xl md:text-3xl lg:text-4xl mt-6 ml-6">
+            <h2 className="font-satoshiBold text-3xl lg:text-4xl mt-6 ml-6">
               Formal
             </h2>
           </div>
           <div
             style={{backgroundImage: "url(/party.png)"}}
-            className="md:col-span-3 w-full h-[190px] bg-no-repeat bg-cover bg-right-top rounded-xl bg-white"
+            className="md:col-span-3 hover:bg-cover w-full h-[190px] bg-no-repeat bg-contain bg-right-top rounded-xl bg-white"
           >
-            <h2 className="font-satoshiBold text-2xl md:text-3xl lg:text-4xl mt-6 ml-6">
+            <h2 className="font-satoshiBold text-3xl lg:text-4xl mt-6 ml-6">
               Party
             </h2>
           </div>
           <div
             style={{backgroundImage: "url(/gym.png)"}}
-            className="md:col-span-2 w-full h-[190px] bg-no-repeat bg-cover  bg-right-top rounded-xl bg-white"
+            className="md:col-span-2 hover:bg-cover w-full h-[190px] bg-no-repeat bg-contain  bg-right-top rounded-xl bg-white"
           >
-            <h2 className="font-satoshiBold text-2xl md:text-3xl lg:text-4xl mt-6 ml-6">
+            <h2 className="font-satoshiBold text-3xl lg:text-4xl mt-6 ml-6">
               Gym
             </h2>
           </div>
