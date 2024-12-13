@@ -36,6 +36,7 @@ const Review = () => {
 };
 
 const CustomerReviews = () => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [_, setInit] = useState(false);
   const prevRef = useRef(null);
   const nextRef = useRef(null);
