@@ -28,3 +28,14 @@ body {
     @apply font-integral text-center font-bold uppercase text-3xl md:text-4xl lg:text-5xl my-14 md:my-16 lg:my-20;
   }
 }
+
+.mySwiper .swiper-slide {
+  width: 25%;
+  height: 100%;
+  opacity: 0.8;
+}
+
+.mySwiper .swiper-slide-thumb-active {
+  border: 4px solid black;
+  border-radius: 16px;
+}

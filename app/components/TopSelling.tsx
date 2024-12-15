@@ -5,14 +5,14 @@ export const TopSelling = () => {
   return (
     <div className="wrapper">
       <h1 className="section-title">Top Selling</h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 px-10 lg:px-0">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 px-4 lg:px-0">
         {Array(4)
           .fill(0)
           .map((_, index) => (
             <ProductCard key={index} />
           ))}
       </div>
-      <div className="w-full flex justify-center mt-12 px-10">
+      <div className="w-full flex justify-center mt-12 px-4">
         <Button
           color="primary"
           variant="bordered"

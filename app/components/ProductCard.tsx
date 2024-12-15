@@ -1,5 +1,6 @@
 "use client";
 
+import {Button} from "@nextui-org/button";
 import Image from "next/image";
 
 export default function ProductCard() {
@@ -11,7 +12,7 @@ export default function ProductCard() {
   };
 
   return (
-    <div className="pb-4 flex flex-col items-center justify-center border mx-auto max-w-96 w-full">
+    <div className="pb-4 flex flex-col items-center justify-center border mx-auto max-w-72 w-full max-h-80">
       <div className="pb-2 relative w-full h-60 overflow-hidden bg-[#F2F0F1]">
         <Image
           alt="Card background"
@@ -30,8 +31,8 @@ export default function ProductCard() {
             .fill(0)
             .map((_, index) => (
               <Image
-                width={24}
-                height={24}
+                width={16}
+                height={16}
                 key={index}
                 src="/star.svg"
                 alt="star"
@@ -41,8 +42,8 @@ export default function ProductCard() {
             .fill(0)
             .map((_, index) => (
               <Image
-                width={24}
-                height={24}
+                width={16}
+                height={16}
                 key={index}
                 src="/nostar.svg"
                 alt="nostar"
@@ -50,8 +51,12 @@ export default function ProductCard() {
             ))}
           <p className="ml-2 text-black/60 font-satoshi">{data.rating}/5</p>
         </div>
-
-        <h4 className="font-bold font-satoshiBold text-2xl">${data.price}</h4>
+        <div className="w-full flex justify-between items-center">
+          <h4 className="font-bold font-satoshiBold text-2xl">${data.price}</h4>
+          <Button size="sm" color="primary">
+            Details
+          </Button>
+        </div>
       </div>
     </div>
   );
