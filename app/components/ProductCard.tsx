@@ -48,11 +48,15 @@ export default function ProductCard({data}: ProductCardProps) {
         </div>
         <div className="w-full flex justify-between items-center">
           <h4 className="font-bold font-satoshiBold text-2xl">${data.price}</h4>
-          <Link href={`/collections/${data.id}`}>
-            <Button size="sm" color="primary">
-              Details
-            </Button>
-          </Link>
+
+          <Button
+            as={Link}
+            href={`/collections/${data.id}`}
+            size="sm"
+            color="primary"
+          >
+            Details
+          </Button>
         </div>
       </div>
     </div>

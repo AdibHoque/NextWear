@@ -12,8 +12,9 @@ export default function NotFoundPage() {
         height={500}
         className="bg-contain"
       />
-      <Button color="primary" className="px-4 py-2">
-        <Link href="/">Back Home</Link>
+
+      <Button as={Link} href="/" color="primary" className="px-4 py-2">
+        Back Home
       </Button>
     </div>
   );

@@ -96,7 +96,7 @@ const ProductDetails = ({data}: ProductCardProps) => {
           <ButtonGroup radius="full" className="font-satoshiBold">
             <Button
               size="sm"
-              onClick={() => (quantity > 1 ? setQuantity(quantity - 1) : "")}
+              onPress={() => (quantity > 1 ? setQuantity(quantity - 1) : "")}
               className="text-2xl h-full"
             >
               -
@@ -106,7 +106,7 @@ const ProductDetails = ({data}: ProductCardProps) => {
             </Button>
             <Button
               size="sm"
-              onClick={() => (quantity < 10 ? setQuantity(quantity + 1) : "")}
+              onPress={() => (quantity < 10 ? setQuantity(quantity + 1) : "")}
               className="text-2xl h-full"
             >
               +
