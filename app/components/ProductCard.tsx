@@ -7,17 +7,17 @@ import {ProductCardProps} from "../types";
 
 export default function ProductCard({data}: ProductCardProps) {
   return (
-    <div className="pb-4 flex flex-col items-center justify-center border mx-auto max-w-72 w-full max-h-80">
-      <div className="pb-2 relative w-full min-h-36 md:h-48 overflow-hidden bg-[#F2F0F1]">
+    <div className="rounded-xl pb-4 flex flex-col items-center justify-center border mx-auto max-w-72 w-full max-h-80">
+      <div className="pb-2 rounded-t-xl object-top relative w-full min-h-36 md:h-48 overflow-hidden bg-[#F2F0F1]">
         <Image
           alt="Card background"
-          className="object-fill hover:scale-110 overflow-hidden transform transition-transform duration-300 ease-in-out"
+          className="rounded-t-xl object-fill hover:scale-110 overflow-hidden transform transition-transform duration-300 ease-in-out"
           src={data.image}
           fill
         />
       </div>
       <div className="pb-0 pt-2 px-2 flex-col items-start w-full">
-        <h3 className="text-xs md:text-lg font-satoshiBold font-bold text-wrap">
+        <h3 className="text-xs md:text-lg font-satoshiBold font-bold truncate">
           {data.name}
         </h3>
 
@@ -54,8 +54,9 @@ export default function ProductCard({data}: ProductCardProps) {
             href={`/collections/${data.id}`}
             size="sm"
             color="primary"
+            className="h-6"
           >
-            Details
+            View
           </Button>
         </div>
       </div>

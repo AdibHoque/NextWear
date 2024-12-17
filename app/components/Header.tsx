@@ -14,6 +14,7 @@ import {
   Input,
 } from "@nextui-org/react";
 import {CircleUserRound, Search, ShoppingCart} from "lucide-react";
+import NavItems from "./NavItems";
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
@@ -38,6 +39,7 @@ export default function Header() {
           "data-[active=true]:after:bg-primary",
         ],
       }}
+      maxWidth="lg"
       onMenuOpenChange={setIsMenuOpen}
       isBordered
       shouldHideOnScroll
@@ -60,26 +62,7 @@ export default function Header() {
         className="hidden sm:flex gap-4 font-satoshi uppercase"
         justify="center"
       >
-        <NavbarItem isActive>
-          <Link color="foreground" href="#">
-            Home
-          </Link>
-        </NavbarItem>
-        <NavbarItem>
-          <Link color="foreground" href="/collections">
-            Collections
-          </Link>
-        </NavbarItem>
-        <NavbarItem>
-          <Link color="foreground" href="#">
-            About
-          </Link>
-        </NavbarItem>
-        <NavbarItem>
-          <Link color="foreground" href="#">
-            Contact
-          </Link>
-        </NavbarItem>
+        <NavItems />
       </NavbarContent>
       <NavbarContent justify="end">
         <NextLink href="/collections">
