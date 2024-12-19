@@ -1,9 +1,7 @@
-"use client";
-
 import {Button} from "@nextui-org/button";
 import Image from "next/image";
 import Link from "next/link";
-import {ProductCardProps} from "../types";
+import {ProductCardProps} from "../../types";
 
 export default function ProductCard({data}: ProductCardProps) {
   return (
@@ -51,7 +49,7 @@ export default function ProductCard({data}: ProductCardProps) {
 
           <Button
             as={Link}
-            href={`/collections/${data.id}`}
+            href={`/collections/${data._id}`}
             size="sm"
             color="primary"
             className="h-6"

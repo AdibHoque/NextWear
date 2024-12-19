@@ -16,6 +16,8 @@
     "@nextui-org/theme": "^2.4.1",
     "framer-motion": "^11.13.3",
     "lucide-react": "^0.468.0",
+    "mongodb": "^6.12.0",
+    "mongoose": "^8.9.2",
     "next": "15.0.4",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",

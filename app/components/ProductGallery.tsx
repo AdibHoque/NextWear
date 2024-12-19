@@ -2,7 +2,7 @@
 "use client";
 
 import {Swiper, SwiperClass, SwiperSlide} from "swiper/react";
-import {FreeMode, Thumbs} from "swiper/modules";
+import {FreeMode, Thumbs, Autoplay} from "swiper/modules";
 
 import "swiper/css";
 import "swiper/css/free-mode";
@@ -41,7 +41,11 @@ const ProductGallery = ({image}: {image: string[]}) => {
         slidesPerView={3}
         freeMode={true}
         watchSlidesProgress={true}
-        modules={[FreeMode, Thumbs]}
+        autoplay={{
+          delay: 2500,
+          disableOnInteraction: false,
+        }}
+        modules={[FreeMode, Thumbs, Autoplay]}
         className="mySwiper mt-2"
       >
         <SwiperSlide>

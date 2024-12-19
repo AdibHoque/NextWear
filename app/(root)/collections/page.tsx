@@ -1,6 +1,5 @@
 "use client";
-import ProductCard from "@/app/components/ProductCard";
-import {data} from "@/app/constants";
+import ProductsGrid from "@/app/components/ProductsGrid";
 import {
   Button,
   Checkbox,
@@ -117,12 +116,7 @@ const CollectionsPage = () => {
           Apply Filter
         </Button>
       </div>
-
-      <div className="mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-        {data.map((data) => (
-          <ProductCard key={data.id} data={data} />
-        ))}
-      </div>
+      <ProductsGrid />
     </div>
   );
 };

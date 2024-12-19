@@ -5,7 +5,7 @@ import {CheckIcon} from "lucide-react";
 import Image from "next/image";
 import {useState} from "react";
 import ProductGallery from "@/app/components/ProductGallery";
-import {ProductCardProps} from "../types";
+import {ProductCardProps} from "../../types";
 
 const ProductDetails = ({data}: ProductCardProps) => {
   const [quantity, setQuantity] = useState(1);
