@@ -7,12 +7,12 @@ import {ProductCardProps} from "../types";
 
 export default function ProductCard({data}: ProductCardProps) {
   return (
-    <div className="rounded-xl pb-4 flex flex-col items-center justify-center border mx-auto max-w-72 w-full max-h-80">
+    <div className="rounded-xl pb-4 flex flex-col items-center justify-center border mx-auto max-w-56 w-full max-h-80">
       <div className="pb-2 rounded-t-xl object-top relative w-full min-h-36 md:h-48 overflow-hidden bg-[#F2F0F1]">
         <Image
           alt="Card background"
           className="rounded-t-xl object-fill hover:scale-110 overflow-hidden transform transition-transform duration-300 ease-in-out"
-          src={data.image}
+          src={data.image[0]}
           fill
         />
       </div>

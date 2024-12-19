@@ -16,6 +16,7 @@ import {useState} from "react";
 const CollectionsPage = () => {
   const [selected, setSelected] = useState("");
   const [selectedType, setSelectedType] = useState("");
+  const [priceRange, setPriceRange] = useState<number[]>([0, 500]);
 
   return (
     <div className="wrapper py-6 md:flex gap-4 px-4 lg:px-0 relative">
@@ -56,9 +57,16 @@ const CollectionsPage = () => {
               defaultValue={[0, 500]}
               formatOptions={{style: "currency", currency: "USD"}}
               label="Price Range"
+              showTooltip={true}
               maxValue={500}
               minValue={0}
               step={50}
+              value={priceRange}
+              onChange={(value) => {
+                if (Array.isArray(value)) {
+                  setPriceRange(value);
+                }
+              }}
             />
             <Button color="primary" className="w-full">
               Apply Filter
@@ -94,9 +102,16 @@ const CollectionsPage = () => {
           defaultValue={[0, 500]}
           formatOptions={{style: "currency", currency: "USD"}}
           label="Price Range"
+          showTooltip={true}
           maxValue={500}
           minValue={0}
           step={50}
+          value={priceRange}
+          onChange={(value) => {
+            if (Array.isArray(value)) {
+              setPriceRange(value);
+            }
+          }}
         />
         <Button color="primary" className="w-full">
           Apply Filter

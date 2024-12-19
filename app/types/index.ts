@@ -2,7 +2,7 @@ export interface ProductData {
   id: string;
   name: string;
   description: string;
-  image: string;
+  image: string[];
   price: string;
   rating: string;
 }

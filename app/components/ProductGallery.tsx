@@ -10,7 +10,7 @@ import "swiper/css/navigation";
 import "swiper/css/thumbs";
 import {useState} from "react";
 
-const ProductGallery = ({image}: {image: string}) => {
+const ProductGallery = ({image}: {image: string[]}) => {
   const [thumbsSwiper, setThumbsSwiper] = useState<SwiperClass | null>(null);
 
   return (
@@ -19,16 +19,20 @@ const ProductGallery = ({image}: {image: string}) => {
         spaceBetween={10}
         thumbs={{swiper: thumbsSwiper}}
         modules={[FreeMode, Thumbs]}
-        className="mySwiper2 h-80"
+        className="mySwiper2 h-80 cursor-pointer"
       >
         <SwiperSlide className="w-full flex justify-center items-center bg-[#F0EEED] rounded-2xl">
-          <img src={image} className="mx-auto" alt="product" />
+          <img src={image[0]} className="mx-auto rounded-2xl" alt="product" />
         </SwiperSlide>
         <SwiperSlide className="w-full flex justify-center items-center bg-[#F0EEED] rounded-2xl">
-          <img src={image} className="mx-auto" alt="product" />
+          <img
+            src={image[1]}
+            className="mx-auto object-contain rounded-2xl"
+            alt="product"
+          />
         </SwiperSlide>
         <SwiperSlide className="w-full flex justify-center items-center bg-[#F0EEED] rounded-2xl">
-          <img src={image} className="mx-auto" alt="product" />
+          <img src={image[2]} className="mx-auto rounded-2xl" alt="product" />
         </SwiperSlide>
       </Swiper>
       <Swiper
@@ -41,13 +45,25 @@ const ProductGallery = ({image}: {image: string}) => {
         className="mySwiper mt-2"
       >
         <SwiperSlide>
-          <img src={image} className="rounded-2xl" alt="product" />
+          <img
+            src={image[0]}
+            className="rounded-2xl cursor-pointer h-[170px] md:h-[250px] lg:h-[170px] w-full"
+            alt="product"
+          />
         </SwiperSlide>
         <SwiperSlide>
-          <img src={image} className="rounded-2xl" alt="product" />
+          <img
+            src={image[1]}
+            className="rounded-2xl bg-cover cursor-pointer h-[170px] md:h-[250px] lg:h-[170px] w-full"
+            alt="product"
+          />
         </SwiperSlide>
         <SwiperSlide>
-          <img src={image} className="rounded-2xl" alt="product" />
+          <img
+            src={image[2]}
+            className="rounded-2xl cursor-pointer h-[170px] md:h-[250px] lg:h-[170px] w-full"
+            alt="product"
+          />
         </SwiperSlide>
       </Swiper>
     </>
