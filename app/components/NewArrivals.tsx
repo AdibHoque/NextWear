@@ -5,7 +5,7 @@ import {getAllProducts} from "@/lib/actions/product.actions";
 import {ProductData} from "@/types";
 
 export const NewArrivals = async () => {
-  const products = await getAllProducts();
+  const products = await getAllProducts({});
   const data = products?.data;
 
   return (

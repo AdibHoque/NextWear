@@ -15,8 +15,10 @@ import {
 } from "@nextui-org/react";
 import {CircleUserRound, Search, ShoppingCart} from "lucide-react";
 import NavItems from "./NavItems";
+import {usePathname} from "next/navigation";
 
 export default function Header() {
+  const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
   const menuItems = ["Home", "Collections", "About", "Contact"];
@@ -65,21 +67,23 @@ export default function Header() {
         <NavItems />
       </NavbarContent>
       <NavbarContent justify="end">
-        <NextLink href="/collections">
-          <Input
-            classNames={{
-              base: "max-w-full sm:max-w-[10rem] h-10 hidden lg:flex",
-              mainWrapper: "h-full",
-              input: "text-small",
-              inputWrapper:
-                "h-full font-normal text-default-500 bg-default-400/20 dark:bg-default-500/20",
-            }}
-            placeholder="Search"
-            size="sm"
-            startContent={<Search size={18} />}
-            type="search"
-          />
-        </NextLink>
+        {pathname !== "/collections" && (
+          <NextLink href="/collections">
+            <Input
+              classNames={{
+                base: "max-w-full sm:max-w-[10rem] h-10 hidden lg:flex",
+                mainWrapper: "h-full",
+                input: "text-small",
+                inputWrapper:
+                  "h-full font-normal text-default-500 bg-default-400/20 dark:bg-default-500/20",
+              }}
+              placeholder="Search"
+              size="sm"
+              startContent={<Search size={18} />}
+              type="search"
+            />
+          </NextLink>
+        )}
 
         <NavbarItem className="">
           <Link href="#">

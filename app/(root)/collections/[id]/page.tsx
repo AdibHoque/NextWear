@@ -1,6 +1,5 @@
 import ProductDetails from "@/app/components/ProductDetails";
-import {getAllProducts} from "@/lib/actions/product.actions";
-import {ProductData} from "@/types";
+import {getProductById} from "@/lib/actions/product.actions";
 
 type IdProps = Promise<{
   id: string;
@@ -9,12 +8,10 @@ type IdProps = Promise<{
 const ProductDetailsPage = async (props: {params: IdProps}) => {
   const params = await props.params;
   const {id} = params;
-  const products = await getAllProducts();
-  const data = products?.data;
-  const ProductData = data ? data.find((d: ProductData) => d._id == id) : {};
+  const productData = await getProductById(id);
 
   return (
-    <>{ProductData ? <ProductDetails data={ProductData} /> : "No data found"}</>
+    <>{productData ? <ProductDetails data={productData} /> : "No data found"}</>
   );
 };
 
