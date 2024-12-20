@@ -23,3 +23,7 @@ export type RemoveUrlQueryParams = {
   params: string;
   keysToRemove: string[];
 };
+
+export type SearchParams = Promise<{
+  [key: string]: string | string[] | undefined;
+}>;

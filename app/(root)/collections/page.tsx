@@ -1,8 +1,7 @@
 import Filter from "@/app/components/Filter";
 import ProductCard from "@/app/components/ProductCard";
 import {getAllProducts} from "@/lib/actions/product.actions";
-import {ProductData} from "@/types";
-import {SearchParams} from "next/dist/server/request/search-params";
+import {ProductData, SearchParams} from "@/types";
 
 const CollectionsPage = async (props: {searchParams: SearchParams}) => {
   const searchParams = await props.searchParams;
@@ -10,12 +9,14 @@ const CollectionsPage = async (props: {searchParams: SearchParams}) => {
   const type = (searchParams?.type as string) || "";
   const priceRange = (searchParams?.priceRange as string) || "";
   const query = (searchParams?.query as string) || "";
+
   const products = await getAllProducts({
     category: category,
     type: type,
     priceRange: priceRange,
     query: query,
   });
+
   const data = products?.data;
 
   return (

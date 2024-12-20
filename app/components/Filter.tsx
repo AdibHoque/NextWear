@@ -112,7 +112,7 @@ const Filter = () => {
           </div>
         </PopoverContent>
       </Popover>
-      <div className="hidden md:flex flex-col gap-6 w-80 h-full sticky top-6 p-4 rounded-xl border ">
+      <div className="hidden md:flex flex-col gap-6 w-80 h-full sticky top-6 p-4 rounded-xl border">
         <Input
           value={query}
           onValueChange={setQuery}
