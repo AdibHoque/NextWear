@@ -43,6 +43,7 @@ export default function Header() {
       }}
       maxWidth="lg"
       onMenuOpenChange={setIsMenuOpen}
+      isMenuOpen={isMenuOpen}
       isBordered
       shouldHideOnScroll
     >
@@ -96,16 +97,18 @@ export default function Header() {
           </Link>
         </NavbarItem>
       </NavbarContent>
-      <NavbarMenu className="flex flex-col justify-center items-center">
+      <NavbarMenu className="flex flex-col justify-center items-center gap-6">
         {menuItems.map((item, index) => (
           <NavbarMenuItem key={`${item}-${index}`}>
-            <Link
-              className="w-full uppercase font-integral text-4xl my-4"
-              href="#"
-              size="lg"
+            <NextLink
+              onClick={() => setIsMenuOpen(false)}
+              className="w-full uppercase font-integral text-4xl hover:opacity-60"
+              href={`/${
+                item.toLocaleLowerCase() == "home" ? "" : item.toLowerCase()
+              }`}
             >
               {item}
-            </Link>
+            </NextLink>
           </NavbarMenuItem>
         ))}
       </NavbarMenu>

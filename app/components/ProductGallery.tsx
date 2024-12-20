@@ -51,21 +51,21 @@ const ProductGallery = ({image}: {image: string[]}) => {
         <SwiperSlide>
           <img
             src={image[0]}
-            className="rounded-2xl cursor-pointer h-[170px] md:h-[250px] lg:h-[170px] w-full"
+            className="rounded-2xl cursor-pointer h-[150px] md:h-[250px] lg:h-[170px] w-full"
             alt="product"
           />
         </SwiperSlide>
         <SwiperSlide>
           <img
             src={image[1]}
-            className="rounded-2xl bg-cover cursor-pointer h-[170px] md:h-[250px] lg:h-[170px] w-full"
+            className="rounded-2xl bg-cover cursor-pointer h-[150px] md:h-[250px] lg:h-[170px] w-full"
             alt="product"
           />
         </SwiperSlide>
         <SwiperSlide>
           <img
             src={image[2]}
-            className="rounded-2xl cursor-pointer h-[170px] md:h-[250px] lg:h-[170px] w-full"
+            className="rounded-2xl cursor-pointer h-[150px] md:h-[250px] lg:h-[170px] w-full"
             alt="product"
           />
         </SwiperSlide>

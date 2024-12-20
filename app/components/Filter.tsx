@@ -20,6 +20,7 @@ const Filter = () => {
   const [query, setQuery] = useState("");
   const [priceRange, setPriceRange] = useState<number[]>([0, 500]);
   const [url, setUrl] = useState("");
+  const [open, setOpen] = useState(false);
 
   const searchParams = useSearchParams();
   const router = useRouter();
@@ -43,14 +44,19 @@ const Filter = () => {
 
   return (
     <>
-      <Popover placement="right" showArrow={true}>
+      <Popover
+        placement="right"
+        showArrow={true}
+        isOpen={open}
+        onOpenChange={(open) => setOpen(open)}
+      >
         <PopoverTrigger className="md:hidden mb-4">
           <Button isIconOnly variant="faded" color="primary">
             <SlidersHorizontal className="text-black/40" />
           </Button>
         </PopoverTrigger>
         <PopoverContent>
-          <div className="flex flex-col gap-6 w-80 h-full top-6  p-4">
+          <div className="flex flex-col gap-6 w-[70vw] h-full top-6 p-4 md:hidden">
             <Input
               value={query}
               onValueChange={setQuery}
@@ -106,7 +112,14 @@ const Filter = () => {
                 }
               }}
             />
-            <Button color="primary" className="w-full">
+            <Button
+              onPress={() => {
+                router.push(url);
+                setOpen(false);
+              }}
+              color="primary"
+              className="w-full"
+            >
               Apply Filter
             </Button>
           </div>
