@@ -6,11 +6,53 @@ import Image from "next/image";
 import {useState} from "react";
 import ProductGallery from "@/app/components/ProductGallery";
 import {ProductCardProps} from "../../types";
+import {addToCart} from "@/redux/cartSlice";
+import {useDispatch} from "react-redux";
+import MySwal from "sweetalert2";
 
 const ProductDetails = ({data}: ProductCardProps) => {
   const [quantity, setQuantity] = useState(1);
   const [selectedSize, setSelectedSize] = useState("Small");
   const [color, setColor] = useState(1);
+  const dispatch = useDispatch();
+
+  const handleAddToCart = () => {
+    const actionResult = dispatch(
+      addToCart({
+        product: {
+          _id: data._id,
+          name: data.name,
+          description: data.description,
+          image: data.image,
+          price: data.price,
+          rating: data.rating,
+          type: data.type,
+          category: data.category,
+        },
+        quantity,
+      })
+    );
+
+    if (actionResult) {
+      MySwal.fire({
+        position: "center",
+        icon: "success",
+        title: "Added to Cart!",
+        text: `${data.name} has been added to your cart.`,
+        timer: 2000,
+        showConfirmButton: false,
+      });
+    } else {
+      MySwal.fire({
+        position: "center",
+        icon: "error",
+        title: "Error!",
+        text: "Failed to add the product to the cart. Please try again.",
+        timer: 2000,
+        showConfirmButton: false,
+      });
+    }
+  };
 
   return (
     <div className="wrapper flex flex-col lg:flex-row justify-between px-4 lg:px-0 gap-6 my-6 mb-12 md:mb-20">
@@ -112,7 +154,12 @@ const ProductDetails = ({data}: ProductCardProps) => {
               +
             </Button>
           </ButtonGroup>
-          <Button color="primary" radius="full" className="w-full">
+          <Button
+            color="primary"
+            radius="full"
+            className="w-full"
+            onPress={handleAddToCart}
+          >
             Add to Cart
           </Button>
         </div>

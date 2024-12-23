@@ -1,6 +1,7 @@
 import type {Metadata} from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import ReduxProvider from "./ReduxProvider";
 
 const satoshi = localFont({
   src: "./fonts/Satoshi-Regular.woff",
@@ -33,7 +34,7 @@ export default function RootLayout({
       <body
         className={`${satoshi.variable} ${satoshiBold.variable} ${integral.variable} font-satoshi antialiased`}
       >
-        {children}
+        <ReduxProvider>{children}</ReduxProvider>
       </body>
     </html>
   );

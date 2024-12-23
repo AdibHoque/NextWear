@@ -45,7 +45,7 @@ const Filter = () => {
   return (
     <>
       <Popover
-        placement="right"
+        placement="right-start"
         showArrow={true}
         isOpen={open}
         onOpenChange={(open) => setOpen(open)}

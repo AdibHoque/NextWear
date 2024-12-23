@@ -13,9 +13,10 @@ import {
   Link,
   Input,
 } from "@nextui-org/react";
-import {CircleUserRound, Search, ShoppingCart} from "lucide-react";
+import {CircleUserRound, Search} from "lucide-react";
 import NavItems from "./NavItems";
 import {usePathname} from "next/navigation";
+import CartIcon from "./CartIcon";
 
 export default function Header() {
   const pathname = usePathname();
@@ -87,9 +88,9 @@ export default function Header() {
         )}
 
         <NavbarItem className="">
-          <Link href="#">
-            <ShoppingCart />
-          </Link>
+          <NextLink href="/cart">
+            <CartIcon />
+          </NextLink>
         </NavbarItem>
         <NavbarItem className="">
           <Link href="#">
