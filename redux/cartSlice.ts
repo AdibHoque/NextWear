@@ -1,7 +1,7 @@
 import {ProductData} from "@/types";
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 
-interface CartItem extends ProductData {
+export interface CartItem extends ProductData {
   quantity: number;
 }
 

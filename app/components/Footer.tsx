@@ -16,7 +16,7 @@ const Footer = () => {
               wear. From women to men.
             </p>
             <div className="flex gap-1">
-              <div className="rounded-full bg-white group hover:bg-black border-2 p-1 ">
+              <div className="rounded-full bg-white group hover:bg-black border-2 p-1">
                 <Twitter className="opacity-80 group-hover:text-white" />
               </div>
               <div className="rounded-full bg-white hover:bg-black border-2 p-1 group">
