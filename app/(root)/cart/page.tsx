@@ -1,14 +1,59 @@
 "use client";
-import {CartItem} from "@/redux/cartSlice";
+import {CartItem, removeFromCart, changeQuantity} from "@/redux/cartSlice";
 import {RootState} from "@/redux/store";
 import {Button, ButtonGroup} from "@nextui-org/button";
 import {Divider, Input} from "@nextui-org/react";
 import {ArrowRight, Tag, Trash} from "lucide-react";
 import Image from "next/image";
-import React from "react";
-import {useSelector} from "react-redux";
+import React, {useState} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import MySwal from "sweetalert2";
 
 const Item = ({data}: {data: CartItem}) => {
+  const color = data.color
+    ? data.color == 1
+      ? "Default"
+      : data.color == 2
+      ? "Dark"
+      : "Light"
+    : "Default";
+  const dispatch = useDispatch();
+
+  const handleRemoveFromCart = () => {
+    MySwal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        const actionResult = dispatch(removeFromCart(data._id));
+
+        if (actionResult) {
+          MySwal.fire({
+            position: "center",
+            icon: "success",
+            title: "Removed from Cart!",
+            text: `${data.name} has been removed from your cart.`,
+            timer: 2000,
+            showConfirmButton: false,
+          });
+        } else {
+          MySwal.fire({
+            position: "center",
+            icon: "error",
+            title: "Error!",
+            text: "Failed to remove the product to the cart. Please try again.",
+            timer: 2000,
+            showConfirmButton: false,
+          });
+        }
+      }
+    });
+  };
   return (
     <div className="flex items-center justify-between max-h-72 md:py-6 py-2 gap-4 w-full">
       <Image
@@ -25,21 +70,41 @@ const Item = ({data}: {data: CartItem}) => {
             {data.name}
           </h3>
 
-          <Trash color="red" className="hover:cursor-pointer" />
+          <Trash
+            onClick={handleRemoveFromCart}
+            color="red"
+            className="hover:cursor-pointer"
+          />
         </div>
 
         <p>
-          Size: <span className="opacity-60">Large</span>
+          Size:{" "}
+          <span className="opacity-60">
+            {data.selectedSize ? data.selectedSize : "Large"}
+          </span>
         </p>
         <p>
-          Color: <span className="opacity-60">White</span>
+          Color: <span className="opacity-60">{color}</span>
         </p>
         <div className="flex justify-between items-center w-full ">
           <h4 className="font-bold font-satoshiBold text-2xl">
             ${Number(data.price) * Number(data.quantity)}
           </h4>
           <ButtonGroup radius="full" className="font-satoshiBold">
-            <Button isIconOnly size="sm" className="text-xl h-full px-0 w-1">
+            <Button
+              isDisabled={data.quantity <= 1}
+              onPress={() =>
+                dispatch(
+                  changeQuantity({
+                    _id: data._id,
+                    quantity: Number(data.quantity) - 1,
+                  })
+                )
+              }
+              isIconOnly
+              size="sm"
+              className="text-xl h-full px-0 w-1"
+            >
               -
             </Button>
             <Button
@@ -50,7 +115,20 @@ const Item = ({data}: {data: CartItem}) => {
             >
               {data.quantity}
             </Button>
-            <Button isIconOnly size="sm" className="text-xl h-full px-0 w-1">
+            <Button
+              isDisabled={data.quantity >= 10}
+              onPress={() =>
+                dispatch(
+                  changeQuantity({
+                    _id: data._id,
+                    quantity: Number(data.quantity) + 1,
+                  })
+                )
+              }
+              isIconOnly
+              size="sm"
+              className="text-xl h-full px-0 w-1"
+            >
               +
             </Button>
           </ButtonGroup>
@@ -62,10 +140,38 @@ const Item = ({data}: {data: CartItem}) => {
 
 const CartPage = () => {
   const {items} = useSelector((state: RootState) => state.cart);
-  const total = items.reduce(
+  const [discount, setDiscount] = useState(0);
+  const subTotal = items.reduce(
     (acc, current) => acc + Number(current.price) * Number(current.quantity),
     15
   );
+  const total = subTotal - Math.round(((subTotal - 15) / 100) * discount);
+
+  const handleDiscount = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const form = new FormData(e.currentTarget);
+    const promoCode = form.get("promo");
+    if (promoCode === "ADIB20") {
+      setDiscount(20);
+      MySwal.fire({
+        position: "center",
+        icon: "success",
+        title: "Discount Granted!",
+        text: `You have been granted 20% Discount for using Promo code ${promoCode}`,
+        timer: 2000,
+        showConfirmButton: false,
+      });
+    } else {
+      MySwal.fire({
+        position: "center",
+        icon: "error",
+        title: "Invalid Promo code.",
+        text: `${promoCode} is not a valid Promo code.`,
+        timer: 2000,
+        showConfirmButton: false,
+      });
+    }
+  };
   return (
     <div className="wrapper px-4 lg:px-0 my-6">
       <h1 className="font-integral font-bold uppercase text-2xl md:text-3xl lg:text-4xl my-6">
@@ -77,17 +183,19 @@ const CartPage = () => {
             <Item key={data._id} data={data} />
           ))}
         </div>
-        <div className="rounded-xl border flex flex-col gap-5 p-5 w-full lg:w-3/5 h-full">
+        <div className="rounded-xl border flex flex-col gap-5 p-5 w-full lg:w-3/5 h-full lg:sticky lg:top-6">
           <h4 className="font-satoshiBold font-bold text-xl md:text-2xl">
             Order Summary
           </h4>
           <div className="flex justify-between items-center">
             <p className="opacity-60">Subtotal</p>
-            <p className="font-satoshiBold">${total - 15}</p>
+            <p className="font-satoshiBold">${subTotal - 15}</p>
           </div>
           <div className="flex justify-between items-center">
             <p className="opacity-60">Discount</p>
-            <p className="font-satoshiBold text-red-500">-$0</p>
+            <p className="font-satoshiBold text-red-500">
+              -${Math.round(((subTotal - 15) / 100) * discount)}
+            </p>
           </div>
           <div className="flex justify-between items-center">
             <p className="opacity-60">Delivery Fee</p>
@@ -98,12 +206,13 @@ const CartPage = () => {
             <p className="">Total</p>
             <p className="font-satoshiBold">${total > 15 ? total : 0}</p>
           </div>
-          <form className="w-full flex gap-4">
+          <form className="w-full flex gap-4" onSubmit={handleDiscount}>
             <Input
               name="promo"
+              isDisabled={discount > 0}
               labelPlacement="outside"
               required
-              placeholder="Add promo code"
+              placeholder={discount > 0 ? "COUPON APPLIED" : "Add promo code"}
               className="w-full rounded-xl py-[1px] bg-white"
               startContent={
                 <Tag className="text-2xl text-default-400 pointer-events-none flex-shrink-0" />
@@ -111,6 +220,7 @@ const CartPage = () => {
               type="text"
             />
             <Button
+              isDisabled={discount > 0}
               type="submit"
               color="primary"
               className=" rounded-xl font-satoshiBold"

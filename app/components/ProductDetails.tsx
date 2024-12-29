@@ -30,6 +30,8 @@ const ProductDetails = ({data}: ProductCardProps) => {
           category: data.category,
         },
         quantity,
+        selectedSize,
+        color,
       })
     );
 
