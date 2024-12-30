@@ -3,6 +3,7 @@ import ProductCard from "./ProductCard";
 import {Divider} from "@nextui-org/react";
 import {getAllProducts} from "@/lib/actions/product.actions";
 import {ProductData} from "@/types";
+import Link from "next/link";
 
 export const NewArrivals = async () => {
   const products = await getAllProducts({});
@@ -22,6 +23,8 @@ export const NewArrivals = async () => {
       </div>
       <div className="w-full flex justify-center my-12 mb-20 px-4">
         <Button
+          as={Link}
+          href="/collections"
           color="primary"
           variant="bordered"
           className="rounded-full w-44 font-satoshi font-medium mx-auto border-neutral-200"

@@ -1,5 +1,6 @@
 import {Button} from "@nextui-org/button";
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 export const Hero = () => {
@@ -16,6 +17,8 @@ export const Hero = () => {
             style.
           </p>
           <Button
+            as={Link}
+            href="/collections"
             color="primary"
             variant="solid"
             className="rounded-full w-full lg:w-44 font-satoshi font-medium"

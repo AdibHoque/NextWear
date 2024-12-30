@@ -79,7 +79,7 @@ const Filter = () => {
               onValueChange={(value) => setSelected(value[value.length - 1])}
             >
               <Checkbox value="casual">Casual</Checkbox>
-              <Checkbox value="formsl">Formal</Checkbox>
+              <Checkbox value="formal">Formal</Checkbox>
               <Checkbox value="party">Party</Checkbox>
               <Checkbox value="gym">Gym</Checkbox>
             </CheckboxGroup>

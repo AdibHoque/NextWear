@@ -1,7 +1,19 @@
+import {Suspense} from "react";
 import Filter from "@/app/components/Filter";
 import ProductCard from "@/app/components/ProductCard";
 import {getAllProducts} from "@/lib/actions/product.actions";
 import {ProductData, SearchParams} from "@/types";
+import ProductCardSkeleton from "@/app/components/CardSkeleton";
+
+const SkeletonGrid = () => (
+  <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+    {Array(8)
+      .fill(0)
+      .map((_, index) => (
+        <ProductCardSkeleton key={index} />
+      ))}
+  </div>
+);
 
 const CollectionsPage = async (props: {searchParams: SearchParams}) => {
   const searchParams = await props.searchParams;
@@ -22,13 +34,15 @@ const CollectionsPage = async (props: {searchParams: SearchParams}) => {
   return (
     <div className="wrapper py-6 md:flex gap-4 px-4 lg:px-0 relative">
       <Filter />
-      <div className="mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-        {data
-          ? data.map((data: ProductData) => (
-              <ProductCard key={data._id} data={data} />
-            ))
-          : ""}
-      </div>
+      <Suspense fallback={<SkeletonGrid />}>
+        <div className="mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          {data
+            ? data.map((data: ProductData) => (
+                <ProductCard key={data._id} data={data} />
+              ))
+            : ""}
+        </div>
+      </Suspense>
     </div>
   );
 };

@@ -2,6 +2,7 @@ import {Button} from "@nextui-org/button";
 import ProductCard from "./ProductCard";
 import {getAllProducts} from "@/lib/actions/product.actions";
 import {ProductData} from "@/types";
+import Link from "next/link";
 
 export const TopSelling = async () => {
   const products = await getAllProducts({});
@@ -21,6 +22,8 @@ export const TopSelling = async () => {
       </div>
       <div className="w-full flex justify-center mt-12 px-4">
         <Button
+          as={Link}
+          href="/collections"
           color="primary"
           variant="bordered"
           className="rounded-full w-44 font-satoshi font-medium mx-auto border-neutral-200"
