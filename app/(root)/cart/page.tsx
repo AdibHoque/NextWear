@@ -1,4 +1,5 @@
 "use client";
+import BreadCrumbs from "@/app/components/BreadCrumbs";
 import {CartItem, removeFromCart, changeQuantity} from "@/redux/cartSlice";
 import {RootState} from "@/redux/store";
 import {Button, ButtonGroup} from "@nextui-org/button";
@@ -173,8 +174,9 @@ const CartPage = () => {
     }
   };
   return (
-    <div className="wrapper px-4 lg:px-0 my-6">
-      <h1 className="font-integral font-bold uppercase text-2xl md:text-3xl lg:text-4xl my-6">
+    <div className="wrapper px-4 lg:px-0">
+      <BreadCrumbs routes={["Home", "Cart"]} />
+      <h1 className="font-integral font-bold uppercase text-2xl md:text-3xl lg:text-4xl mb-6 -mt-2">
         Your Cart
       </h1>
       <div className="flex flex-col lg:flex-row gap-6 justify-between">
