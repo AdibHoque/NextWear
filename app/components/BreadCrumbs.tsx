@@ -8,7 +8,7 @@ const BreadCrumbs = ({routes}: {routes: string[]}) => {
       {routes.map((r) => (
         <BreadcrumbItem
           isDisabled={r == "Product"}
-          href={`${r.toLowerCase() == "home" ? "/" : `/${r}`}`}
+          href={`${r.toLowerCase() == "home" ? "/" : `/${r.toLowerCase()}`}`}
           key={r}
         >
           {r}

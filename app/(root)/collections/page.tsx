@@ -34,7 +34,17 @@ const CollectionsPage = async (props: {searchParams: SearchParams}) => {
 
   return (
     <div className="wrapper px-4 lg:px-0">
-      <BreadCrums routes={["Home", "Collections"]} />
+      <BreadCrums
+        routes={
+          category == ""
+            ? ["Home", "Collections"]
+            : [
+                "Home",
+                "Collections",
+                category.charAt(0).toUpperCase() + category.slice(1),
+              ]
+        }
+      />
       <div className="pb-16 md:flex gap-4 relative">
         <Filter />
         <Suspense fallback={<SkeletonGrid />}>
@@ -52,3 +62,4 @@ const CollectionsPage = async (props: {searchParams: SearchParams}) => {
 };
 
 export default CollectionsPage;
+export const dynamic = "force-dynamic";

@@ -174,7 +174,7 @@ const CartPage = () => {
     }
   };
   return (
-    <div className="wrapper px-4 lg:px-0">
+    <div className="wrapper px-4 lg:px-0 mb-6 lg:mb-20">
       <BreadCrumbs routes={["Home", "Cart"]} />
       <h1 className="font-integral font-bold uppercase text-2xl md:text-3xl lg:text-4xl mb-6 -mt-2">
         Your Cart
