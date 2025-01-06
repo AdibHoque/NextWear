@@ -4,6 +4,7 @@ import Link from "next/link";
 import {ProductCardProps} from "../../types";
 import {Suspense} from "react";
 import ProductCardSkeleton from "./CardSkeleton";
+import {Counter} from "./Counter";
 
 export default function ProductCard({data}: ProductCardProps) {
   return (
@@ -49,7 +50,14 @@ export default function ProductCard({data}: ProductCardProps) {
           </div>
           <div className="w-full flex justify-between items-center">
             <h4 className="font-bold font-satoshiBold text-2xl">
-              ${data.price}
+              $
+              <Counter
+                scrollSpyOnce
+                enableScrollSpy
+                scrollSpyDelay={0.2}
+                end={Number(data.price)}
+                duration={1}
+              />
             </h4>
 
             <Button
