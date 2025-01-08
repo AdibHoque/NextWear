@@ -18,7 +18,8 @@ const ProductGallery = ({image}: {image: string[]}) => {
       <Swiper
         spaceBetween={10}
         thumbs={{swiper: thumbsSwiper}}
-        modules={[FreeMode, Thumbs]}
+        autoplay
+        modules={[FreeMode, Thumbs, Autoplay]}
         className="mySwiper2 h-80 cursor-pointer"
       >
         <SwiperSlide className="w-full flex justify-center items-center bg-[#F0EEED] rounded-2xl">

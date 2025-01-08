@@ -7,11 +7,13 @@ export async function getAllProducts({
   type,
   priceRange,
   query,
+  page,
 }: {
   category?: string;
   type?: string;
   priceRange?: string;
   query?: string;
+  page?: number;
 }) {
   try {
     await connectToDatabase();
@@ -28,10 +30,15 @@ export async function getAllProducts({
       const [min, max] = priceRange.split("-").map(Number);
       filter.price = {$gte: min, $lte: max};
     }
+    const skipAmount = (Number(page) - 1) * 8;
+    const products = await Product.find(filter).skip(skipAmount).limit(8);
 
-    const products = await Product.find(filter);
+    const productsCount = await Product.countDocuments(filter);
 
-    return {data: JSON.parse(JSON.stringify(products))};
+    return {
+      data: JSON.parse(JSON.stringify(products)),
+      totalPages: Math.ceil(productsCount / 8),
+    };
   } catch (error) {
     console.error("Error fetching products:", error);
     return {data: []};

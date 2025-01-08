@@ -5,6 +5,7 @@ import {getAllProducts} from "@/lib/actions/product.actions";
 import {ProductData, SearchParams} from "@/types";
 import ProductCardSkeleton from "@/app/components/CardSkeleton";
 import BreadCrums from "@/app/components/BreadCrumbs";
+import Pagination from "@/app/components/Pagination";
 
 const SkeletonGrid = () => (
   <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
@@ -22,12 +23,14 @@ const CollectionsPage = async (props: {searchParams: SearchParams}) => {
   const type = (searchParams?.type as string) || "";
   const priceRange = (searchParams?.priceRange as string) || "";
   const query = (searchParams?.query as string) || "";
+  const page = (searchParams?.page as string) || 1;
 
   const products = await getAllProducts({
     category: category,
     type: type,
     priceRange: priceRange,
     query: query,
+    page: Number(page),
   });
 
   const data = products?.data;
@@ -48,12 +51,18 @@ const CollectionsPage = async (props: {searchParams: SearchParams}) => {
       <div className="pb-16 md:flex gap-4 relative">
         <Filter />
         <Suspense fallback={<SkeletonGrid />}>
-          <div className="mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-            {data
-              ? data.map((data: ProductData) => (
-                  <ProductCard key={data._id} data={data} />
-                ))
-              : ""}
+          <div>
+            <div className="mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+              {data
+                ? data.map((data: ProductData) => (
+                    <ProductCard key={data._id} data={data} />
+                  ))
+                : ""}
+            </div>
+            <Pagination
+              totalPages={products?.totalPages ? products?.totalPages : 1}
+              page={page}
+            />
           </div>
         </Suspense>
       </div>
@@ -62,4 +71,3 @@ const CollectionsPage = async (props: {searchParams: SearchParams}) => {
 };
 
 export default CollectionsPage;
-export const dynamic = "force-dynamic";

@@ -77,11 +77,7 @@ const CustomerReviews = () => {
       review:
         "NextWear’s designs are so unique and stylish. Every time I wear something from them, I receive compliments from everyone!",
     },
-    {
-      name: "Noah B.",
-      review:
-        "NextWear combines style and comfort flawlessly. Their clothes make me feel confident and fashionable no matter the occasion.",
-    },
+
     {
       name: "Isabella L.",
       review:
