@@ -2,7 +2,7 @@ import Image from "next/image";
 
 const AboutPage = () => {
   return (
-    <div className="wrapper px-4 lg:px-0">
+    <div className="wrapper px-4 lg:px-0 mb-20">
       <h1 className="px-4 lg:px-0 font-integral text-center font-bold uppercase text-2xl md:text-3xl lg:text-4xl my-6 ">
         About Us
       </h1>
