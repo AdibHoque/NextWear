@@ -91,7 +91,7 @@ const CustomerReviews = () => {
   ];
 
   return (
-    <div className="lg:my-20 my-8 md:my-10">
+    <div className="my-20 ">
       <h1 className="px-4 flex justify-between items-center lg:px-0 font-integral wrapper font-bold uppercase text-3xl md:text-4xl lg:text-5xl my-6 md:my-8 lg:my-10">
         OUR HAPPY CUSTOMERS
         <div className="flex">

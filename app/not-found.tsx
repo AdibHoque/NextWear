@@ -10,10 +10,15 @@ export default function NotFoundPage() {
         alt="error"
         width={500}
         height={500}
-        className="bg-contain"
+        className="bg-contain animate-appearance-in"
       />
 
-      <Button as={Link} href="/" color="primary" className="px-4 py-2">
+      <Button
+        as={Link}
+        href="/"
+        color="primary"
+        className="px-4 py-2 animate-appearance-in"
+      >
         Back Home
       </Button>
     </div>

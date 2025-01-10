@@ -25,6 +25,7 @@ const Newsletter = () => {
               timer: 2000,
               showConfirmButton: false,
             });
+            window.open("https://mail.google.com/", "_blank");
             if (form.current) form.current.reset();
           },
           (error) => {

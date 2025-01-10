@@ -52,7 +52,7 @@ const CollectionsPage = async (props: {searchParams: SearchParams}) => {
         <Filter />
         <Suspense fallback={<SkeletonGrid />}>
           <div>
-            <div className="mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            <div className="mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 w-full">
               {data
                 ? data.map((data: ProductData) => (
                     <ProductCard key={data._id} data={data} />

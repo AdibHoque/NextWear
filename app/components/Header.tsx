@@ -29,7 +29,7 @@ export default function Header() {
     <>
       {notiOpen ? (
         <span className="bg-black">
-          <div className="max-w-5xl mx-auto flex items-center justify-between px-4 ">
+          <div className="max-w-5xl mx-auto flex items-center justify-between px-4">
             <X className="text-black size-5" />
             <p className="text-center text-white font-mono font-thin text-xs md:text-sm my-2">
               Use code <span className="font-bold">ADIB20</span> for 20% off any
