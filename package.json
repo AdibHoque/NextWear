@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@clerk/nextjs": "^6.9.10",
     "@emailjs/browser": "^4.4.1",
     "@nextui-org/button": "^2.2.4",
     "@nextui-org/react": "^2.6.5",

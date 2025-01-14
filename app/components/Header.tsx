@@ -10,13 +10,14 @@ import {
   NavbarMenuToggle,
   NavbarMenu,
   NavbarMenuItem,
-  Link,
   Input,
+  Button,
 } from "@nextui-org/react";
-import {CircleUserRound, Search, X} from "lucide-react";
+import {DollarSign, Search, X} from "lucide-react";
 import NavItems from "./NavItems";
 import {usePathname} from "next/navigation";
 import CartIcon from "./CartIcon";
+import {SignedIn, SignedOut, UserButton} from "@clerk/nextjs";
 
 export default function Header() {
   const pathname = usePathname();
@@ -29,7 +30,7 @@ export default function Header() {
     <>
       {notiOpen ? (
         <span className="bg-black">
-          <div className="max-w-5xl mx-auto flex items-center justify-between px-4">
+          <div className="max-w-5xl mx-auto flex items-center justify-between px-4 md:px-5">
             <X className="text-black size-5" />
             <p className="text-center text-white font-mono font-thin text-xs md:text-sm my-2">
               Use code <span className="font-bold">ADIB20</span> for 20% off any
@@ -115,9 +116,22 @@ export default function Header() {
             </NextLink>
           </NavbarItem>
           <NavbarItem className="">
-            <Link href="#">
-              <CircleUserRound />
-            </Link>
+            <SignedOut>
+              <Button href="/sign-in" size="sm" color="primary">
+                Login
+              </Button>
+            </SignedOut>
+            <SignedIn>
+              <UserButton>
+                <UserButton.MenuItems>
+                  <UserButton.Link
+                    label="Purchases"
+                    labelIcon={<DollarSign className="size-4" />}
+                    href="/purchases"
+                  />
+                </UserButton.MenuItems>
+              </UserButton>
+            </SignedIn>
           </NavbarItem>
         </NavbarContent>
         <NavbarMenu className="flex flex-col justify-center items-center gap-6">
