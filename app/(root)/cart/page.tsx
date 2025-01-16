@@ -1,14 +1,24 @@
 "use client";
 import BreadCrumbs from "@/app/components/BreadCrumbs";
-import {CartItem, removeFromCart, changeQuantity} from "@/redux/cartSlice";
+import {checkoutOrder} from "@/lib/actions/checkout.actions";
+import {
+  CartItem,
+  removeFromCart,
+  changeQuantity,
+  clearCart,
+} from "@/redux/cartSlice";
 import {RootState} from "@/redux/store";
 import {Button, ButtonGroup} from "@nextui-org/button";
 import {Divider, Input} from "@nextui-org/react";
+import {loadStripe} from "@stripe/stripe-js";
 import {ArrowRight, Tag, Trash} from "lucide-react";
 import Image from "next/image";
 import React, {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import MySwal from "sweetalert2";
+const stripePromise = loadStripe(
+  process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!
+);
 
 const Item = ({data}: {data: CartItem}) => {
   const color = data.color
@@ -55,6 +65,7 @@ const Item = ({data}: {data: CartItem}) => {
       }
     });
   };
+
   return (
     <div className="flex items-center justify-between max-h-72 md:py-6 py-2 gap-4 w-full">
       <Image
@@ -141,6 +152,7 @@ const Item = ({data}: {data: CartItem}) => {
 
 const CartPage = () => {
   const {items} = useSelector((state: RootState) => state.cart);
+  const dispatch = useDispatch();
   const [discount, setDiscount] = useState(0);
   const subTotal = items.reduce(
     (acc, current) => acc + Number(current.price) * Number(current.quantity),
@@ -173,18 +185,82 @@ const CartPage = () => {
       });
     }
   };
+
+  const handleClearCart = () => {
+    MySwal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, clear cart!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        dispatch(clearCart());
+        MySwal.fire({
+          position: "center",
+          icon: "success",
+          title: "Success!",
+          text: "Cart has been cleard!",
+          timer: 2000,
+          showConfirmButton: false,
+        });
+      }
+    });
+  };
+
+  const handleCheckout = async () => {
+    if (items.length === 0) {
+      return;
+    }
+    try {
+      const stripe = await stripePromise;
+      if (!stripe) throw new Error("Stripe.js failed to load.");
+      const session = await checkoutOrder(items);
+      window.location.href = session!;
+    } catch (error) {
+      console.error("Checkout failed:", error);
+    }
+  };
+
   return (
     <div className="wrapper px-4 lg:px-0 mb-6 lg:mb-20">
       <BreadCrumbs routes={["Home", "Cart"]} />
       <h1 className="font-integral font-bold uppercase text-2xl md:text-3xl lg:text-4xl mb-6 -mt-2">
         Your Cart
       </h1>
+
       <div className="flex flex-col lg:flex-row gap-6 justify-between">
-        <div className="flex flex-col border rounded-xl divide-y-medium md:px-6 px-2 w-full">
-          {items.map((data) => (
-            <Item key={data._id} data={data} />
-          ))}
+        <div className="w-full relative">
+          {items.length > 0 && (
+            <p
+              onClick={handleClearCart}
+              className="absolute right-2 -top-6 cursor-pointer text-gray-700 font-satoshiBold opacity-60"
+            >
+              Clear Cart
+            </p>
+          )}
+
+          <div className="flex flex-col border rounded-xl divide-y-medium md:px-6 px-2 w-full h-full">
+            {items.length < 1 ? (
+              <div className="flex flex-col justify-center items-center h-full">
+                <Image
+                  alt="empty-cart"
+                  src="/empty-cart.svg"
+                  width={350}
+                  height={350}
+                />
+                <p className="pb-6 font-satoshiBold opacity-50">
+                  Your Cart is empty.
+                </p>
+              </div>
+            ) : (
+              items.map((data) => <Item key={data._id} data={data} />)
+            )}
+          </div>
         </div>
+
         <div className="rounded-xl border flex flex-col gap-5 p-5 w-full lg:w-3/5 h-full lg:sticky lg:top-6">
           <h4 className="font-satoshiBold font-bold text-xl md:text-2xl">
             Order Summary
@@ -230,7 +306,12 @@ const CartPage = () => {
               Apply
             </Button>
           </form>
-          <Button color="primary" size="lg" className="w-full">
+          <Button
+            color="primary"
+            size="lg"
+            className="w-full"
+            onPress={handleCheckout}
+          >
             Go to Checkout <ArrowRight />
           </Button>
         </div>

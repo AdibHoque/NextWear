@@ -18,6 +18,7 @@ import NavItems from "./NavItems";
 import {usePathname} from "next/navigation";
 import CartIcon from "./CartIcon";
 import {SignedIn, SignedOut, UserButton} from "@clerk/nextjs";
+import Link from "next/link";
 
 export default function Header() {
   const pathname = usePathname();
@@ -117,7 +118,7 @@ export default function Header() {
           </NavbarItem>
           <NavbarItem className="">
             <SignedOut>
-              <Button href="/sign-in" size="sm" color="primary">
+              <Button as={Link} href="/sign-in" size="sm" color="primary">
                 Login
               </Button>
             </SignedOut>

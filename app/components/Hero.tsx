@@ -4,7 +4,7 @@ import Link from "next/link";
 import React from "react";
 import {Counter} from "./Counter";
 
-export const Hero = () => {
+export const Hero = async () => {
   return (
     <div className="bg-[#F2F0F1] relative overflow-hidden ">
       <div className="max-w-5xl lg:pt-6 h-full px-4 lg:px-2 mx-auto flex flex-col lg:flex-row justify-between items-center ">
