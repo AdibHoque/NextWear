@@ -1,6 +1,6 @@
 "use client";
 import BreadCrumbs from "@/app/components/BreadCrumbs";
-import {checkoutOrder} from "@/lib/actions/checkout.actions";
+import {checkoutOrder} from "@/lib/actions/order.actions";
 import {
   CartItem,
   removeFromCart,
@@ -8,11 +8,13 @@ import {
   clearCart,
 } from "@/redux/cartSlice";
 import {RootState} from "@/redux/store";
+import {useAuth} from "@clerk/nextjs";
 import {Button, ButtonGroup} from "@nextui-org/button";
 import {Divider, Input} from "@nextui-org/react";
 import {loadStripe} from "@stripe/stripe-js";
 import {ArrowRight, Tag, Trash} from "lucide-react";
 import Image from "next/image";
+import {useRouter} from "next/navigation";
 import React, {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import MySwal from "sweetalert2";
@@ -153,6 +155,8 @@ const Item = ({data}: {data: CartItem}) => {
 const CartPage = () => {
   const {items} = useSelector((state: RootState) => state.cart);
   const dispatch = useDispatch();
+  const router = useRouter();
+  const {isSignedIn} = useAuth();
   const [discount, setDiscount] = useState(0);
   const subTotal = items.reduce(
     (acc, current) => acc + Number(current.price) * Number(current.quantity),
@@ -211,6 +215,18 @@ const CartPage = () => {
   };
 
   const handleCheckout = async () => {
+    if (!isSignedIn) {
+      router.push("/sign-in");
+      MySwal.fire({
+        position: "center",
+        icon: "error",
+        title: "Not Signed In",
+        text: `Kindly sign-in to an account in order to make a purchase.`,
+        timer: 2000,
+        showConfirmButton: false,
+      });
+      return;
+    }
     if (items.length === 0) {
       return;
     }

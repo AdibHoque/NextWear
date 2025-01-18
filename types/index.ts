@@ -9,6 +9,19 @@ export interface ProductData {
   category: string;
 }
 
+export interface ProductOrder {
+  stripeId: string;
+  userId: string;
+  totalAmount: string;
+  createdAt: Date;
+  id: string;
+  name: string;
+  price: string;
+  size: string;
+  color: string;
+  image: string;
+}
+
 export interface ProductCardProps {
   data: ProductData;
 }
