@@ -6,7 +6,10 @@ import {connectToDatabase} from "../database";
 import Order from "../database/models/order.models";
 import {ProductOrder} from "@/types";
 
-export const checkoutOrder = async (cartItems: CartItem[]) => {
+export const checkoutOrder = async (
+  cartItems: CartItem[],
+  isDiscountApplied: boolean
+) => {
   const {userId} = await auth();
   const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
 
@@ -26,16 +29,19 @@ export const checkoutOrder = async (cartItems: CartItem[]) => {
             price: item.price,
             size: item.selectedSize,
             color: item.color,
-            image: `https://nextwear.vercel.app/${item.image[0]}`,
+            image: `https://nextwear.vercel.app${item.image[0]}`,
           },
         },
       },
       quantity: item.quantity,
     }));
 
+    const discounts = isDiscountApplied ? [{coupon: "YQd1FQQF"}] : [];
+
     const session = await stripe.checkout.sessions.create({
       line_items: lineItems,
       mode: "payment",
+      discounts,
       shipping_options: [
         {
           shipping_rate_data: {
@@ -48,10 +54,9 @@ export const checkoutOrder = async (cartItems: CartItem[]) => {
           },
         },
       ],
-      success_url: `${process.env.NEXT_PUBLIC_SERVER_URL}/success`,
+      success_url: `${process.env.NEXT_PUBLIC_SERVER_URL}/purchases`,
       cancel_url: `${process.env.NEXT_PUBLIC_SERVER_URL}/cancel`,
     });
-
     return session.url;
   } catch (error) {
     console.error("Error creating Stripe session:", error);

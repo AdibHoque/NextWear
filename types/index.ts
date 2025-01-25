@@ -12,14 +12,15 @@ export interface ProductData {
 export interface ProductOrder {
   stripeId: string;
   userId: string;
-  totalAmount: string;
   createdAt: Date;
   id: string;
   name: string;
-  price: string;
+  price: number;
+  discount: number;
   size: string;
   color: string;
   image: string;
+  quantity: number;
 }
 
 export interface ProductCardProps {

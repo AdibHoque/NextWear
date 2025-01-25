@@ -233,7 +233,8 @@ const CartPage = () => {
     try {
       const stripe = await stripePromise;
       if (!stripe) throw new Error("Stripe.js failed to load.");
-      const session = await checkoutOrder(items);
+      const session = await checkoutOrder(items, discount == 20);
+      dispatch(clearCart());
       window.location.href = session!;
     } catch (error) {
       console.error("Checkout failed:", error);
