@@ -1,6 +1,6 @@
 const ProductCardSkeleton = () => {
   return (
-    <div className="rounded-xl pb-4 flex flex-col items-center justify-center border mx-auto max-w-56 w-full max-h-72 animate-pulse">
+    <div className="rounded-xl pb-4 flex flex-col items-center justify-center border mx-auto max-w-56 lg:w-40 w-full max-h-72 animate-pulse">
       <div className="pb-2 rounded-t-xl object-top relative w-full min-h-36 bg-gray-200"></div>
 
       <div className="pb-0 pt-2 px-2 flex-col items-start w-full">
@@ -19,8 +19,10 @@ const ProductCardSkeleton = () => {
         </div>
 
         <div className="w-full flex justify-between items-center mt-2">
+          <h1 className="h-6 text-gray-300 font-bold font-satoshiBold text-2xl">
+            $000
+          </h1>
           <div className="h-6 bg-gray-300 rounded w-16"></div>
-          <div className="h-6 bg-gray-300 rounded w-10"></div>
         </div>
       </div>
     </div>
