@@ -77,3 +77,26 @@ export const createOrder = async (order: ProductOrder) => {
     console.log(error);
   }
 };
+
+export async function getAllOrdersByUser({page}: {page?: number}) {
+  try {
+    await connectToDatabase();
+    const {userId} = await auth();
+
+    const skipAmount = (Number(page) - 1) * 8;
+    const orders = await Order.find({userId: userId})
+      .sort({createdAt: -1})
+      .skip(skipAmount)
+      .limit(8);
+
+    const ordersCount = await Order.countDocuments();
+
+    return {
+      data: JSON.parse(JSON.stringify(orders)),
+      totalPages: Math.ceil(ordersCount / 8),
+    };
+  } catch (error) {
+    console.error("Error fetching products:", error);
+    return {data: []};
+  }
+}
