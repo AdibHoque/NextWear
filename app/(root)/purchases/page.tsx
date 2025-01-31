@@ -15,7 +15,7 @@ const Item = ({data}: {data: ProductOrder}) => {
     <div className="flex items-center justify-between max-h-72 md:py-6 py-2 gap-4 w-full">
       <Image
         alt="Card background"
-        className=" hover:scale-110 overflow-hidden transform transition-transform duration-300 ease-in-out"
+        className="hover:scale-110 overflow-hidden transform transition-transform duration-300 ease-in-out"
         src={data.image}
         width={250}
         height={250}

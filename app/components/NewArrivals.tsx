@@ -4,6 +4,7 @@ import {Divider} from "@nextui-org/react";
 import {getAllProducts} from "@/lib/actions/product.actions";
 import {ProductData} from "@/types";
 import Link from "next/link";
+import ProductCardSkeleton from "./CardSkeleton";
 
 export const NewArrivals = async () => {
   const products = await getAllProducts({});
@@ -13,13 +14,15 @@ export const NewArrivals = async () => {
     <div className="wrapper">
       <h1 className="section-title">New Arrivals</h1>
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 px-4 lg:px-0">
-        {data
+        {data > 0
           ? data
               .slice(0, 4)
               .map((data: ProductData) => (
                 <ProductCard key={data._id} data={data} />
               ))
-          : ""}
+          : Array(4)
+              .fill(0)
+              .map((_, index) => <ProductCardSkeleton key={index} />)}
       </div>
       <div className="w-full flex justify-center my-12 mb-20 px-4">
         <Button

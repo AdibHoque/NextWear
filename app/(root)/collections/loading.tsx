@@ -3,8 +3,8 @@ import ProductCardSkeleton from "@/app/components/CardSkeleton";
 import Filter from "@/app/components/Filter";
 
 const SkeletonGrid = () => (
-  <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-    {Array(8)
+  <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 w-full">
+    {Array(12)
       .fill(0)
       .map((_, index) => (
         <ProductCardSkeleton key={index} />
