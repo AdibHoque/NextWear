@@ -14,7 +14,7 @@ export const NewArrivals = async () => {
     <div className="wrapper">
       <h1 className="section-title">New Arrivals</h1>
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 px-4 lg:px-0">
-        {data > 0
+        {data.length > 0
           ? data
               .slice(0, 4)
               .map((data: ProductData) => (

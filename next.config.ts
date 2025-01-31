@@ -3,7 +3,13 @@ import type {NextConfig} from "next";
 const nextConfig: NextConfig = {
   /* config options here */
   images: {
-    domains: ["nextwear.vercel.app"],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "nextwear.vercel.app",
+        port: "",
+      },
+    ],
   },
 };
 
