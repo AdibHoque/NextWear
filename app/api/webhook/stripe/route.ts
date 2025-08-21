@@ -24,7 +24,6 @@ export async function POST(request: Request) {
   // CREATE
   if (eventType === "checkout.session.completed") {
     const session = event.data.object as Stripe.Checkout.Session;
-    console.log(session);
 
     try {
       // Fetch line items associated with the session
@@ -32,7 +31,6 @@ export async function POST(request: Request) {
         session.id,
         {expand: ["data.price.product"]}
       );
-      console.log("Line Item:", lineItems);
       // Map line items to orders
       const orders = lineItems.data.map((item) => {
         // Access metadata directly from the item
@@ -41,8 +39,8 @@ export async function POST(request: Request) {
           product && typeof product !== "string" && "metadata" in product
             ? product.metadata
             : {};
-        console.log("Metadata during session creation:", metadata);
-        return {
+       
+         return {
           stripeId: session.id,
           userId: metadata.userId || "",
           createdAt: new Date(),

@@ -1,5 +1,6 @@
 import type {Config} from "tailwindcss";
 import {nextui} from "@nextui-org/react";
+import typography from "@tailwindcss/typography";
 import defaultTheme from "tailwindcss/defaultTheme";
 
 export default {
@@ -32,5 +33,5 @@ export default {
       },
     },
   },
-  plugins: [nextui()],
+  plugins: [nextui(), typography()],
 } satisfies Config;

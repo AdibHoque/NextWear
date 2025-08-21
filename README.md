@@ -1,36 +1,100 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# NextWear
 
-## Getting Started
+[Live Website](https://nextwear.vercel.app/)
 
-First, run the development server:
+NextWear is a modern **eCommerce platform** designed for a seamless and stylish shopping experience. Built with **Next.js 15** and **TypeScript**, it ensures a **scalable, maintainable, and high-performance** shopping experience for users.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+The platform integrates **Redux** for state management, **Stripe** for secure payment processing, and **Clerk** for authentication. The UI is powered by **Next UI**.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🚀 Features
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 1. **Dynamic Homepage**
 
-## Learn More
+- **Hero Section**: Showcasing the latest fashion trends.
+- **New Arrivals**: Discover the latest products.
+- **Top Selling**: Highlighting best-selling items.
+- **Browse by Styles**: A stylish **Bento Grid** categorizing fashion styles.
+- **Customer Reviews**: A carousel featuring customer testimonials.
+- **Newsletter Signup**: Stay updated with the latest fashion deals.
 
-To learn more about Next.js, take a look at the following resources:
+### 2. **Product Exploration**
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **Collections Page (`/collections`)**
+  - Browse all products with **filters** for:
+    - **Name** search.
+    - **Price Range** selection.
+    - **Categories**: Casual, Formal, Gym, Party.
+    - **Clothing Type**: Topwear, Bottomwear.
+  - **Pagination** for easy navigation.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### 3. **Product Details**
 
-## Deploy on Vercel
+- **Product Page (`/collections/:id`)**
+  - View detailed information about a product.
+  - Select **color, size, and quantity** before adding to cart.
+  - See related products for better shopping choices.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### 4. **Shopping Cart**
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **Cart Page (`/cart`)**
+  - View all added products.
+  - **Modify quantity or remove items** from the cart.
+  - **Clear cart fully** with a single click.
+  - Apply discount coupons (**Use "ADIB20" for 20% off**).
+  - **Proceed to checkout**, redirecting to **Stripe checkout**.
+
+### 5. **Secure Payment & Order Management**
+
+- **Checkout with Stripe**
+  - Securely pay with **test cards** (e.g., `4242 4242 4242 4242` with any future expiry date & CVC).
+- **Purchases Page (`/purchases`)**
+  - View all successfully purchased products after checkout.
+
+### 6. **Additional Pages**
+
+- **About Page (`/about`)**: Learn about NextWear and its mission.
+- **Contact Page (`/contact`)**: Reach out for support or inquiries.
+
+---
+
+## 📌 Routes
+
+| Route              | Description                                                       |
+| ------------------ | ----------------------------------------------------------------- |
+| `/`                | Homepage with featured sections & promotions.                     |
+| `/collections`     | Browse all products with filtering & sorting options.             |
+| `/collections/:id` | View individual product details and add to cart.                  |
+| `/cart`            | Manage cart items, apply discount codes, and proceed to checkout. |
+| `/purchases`       | View order history after a successful purchase.                   |
+| `/about`           | Learn more about NextWear.                                        |
+| `/contact`         | Contact NextWear for support.                                     |
+
+---
+
+## 🛠️ Tech Stack
+
+### **Frontend**
+
+- **Next.js 15**: Modern React framework with **App Router architecture**.
+- **React 19**: Enhanced UI experience with concurrent features.
+- **TypeScript**: Type-safe and scalable codebase.
+- **Redux**: State management for a smooth shopping experience.
+- **Next UI**: Elegant and accessible UI components.
+- **TailwindCSS** & **tailwindcss-animate**: Utility-first styling with smooth animations.
+
+### **Backend & Database**
+
+- **MongoDB**: NoSQL database for efficient product & order management.
+- **Mongoose**: Schema-based modeling for structured data.
+- **Stripe**: Secure and seamless payment processing.
+
+### **Authentication & Security**
+
+- **Clerk**: Advanced authentication platform for secure user sign-in.
+- **Secure Stripe Integration**: Protects transactions with robust payment gateways.
+
+---
+
+NextWear is built to redefine **eCommerce** with an intuitive, fast, and modern shopping experience. Shop now at **[NextWear](https://nextwear.vercel.app/)!** 🛍️
